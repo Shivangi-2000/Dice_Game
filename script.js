@@ -3,12 +3,19 @@ let score0El = document.querySelector('#score--0');
 let score1El = document.getElementById('score--1');
 let btnNew = document.querySelector('.btn--new');
 let btnRoll = document.querySelector('.btn--roll');
+let btnName = document.querySelector('.btn--name');
 let btnHold = document.querySelector('.btn--hold');
 let diceEl = document.querySelector('.dice');
 let current0El = document.querySelector('#current--0');
 let current1El = document.getElementById('current--1');
 let player0El = document.querySelector('.player--0');
 let player1El = document.querySelector('.player--1');
+let modal = document.querySelector('.modal');
+let btnCloseModal = document.querySelector('.close-modal');
+let btnDone = document.querySelector('.btn--done');
+let player0Name = document.getElementById('name--0');
+let player1Name = document.getElementById('name--1');
+
 //starting condition
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -51,14 +58,17 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
     // if score is greater than 20 than player will win the game
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 10) {
       playing = false;
+
+      document.getElementById(`name--${activePlayer}`).textContent += ' 🥇';
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
+      diceEl.src = 'img/trophy.png';
     } else {
       //switch to the next player
       switchPlayer();
@@ -78,8 +88,24 @@ btnNew.addEventListener('click', function () {
   player1El.classList.remove('player--active');
   current0El.textContent = 0;
   current1El.textContent = 0;
-
+  scores[0] = 0;
+  scores[1] = 0;
   playing = true;
   currentScore = 0;
   activePlayer = 0;
+  player0Name.textContent = 'Player 1';
+  player1Name.textContent = 'player 2';
+});
+
+btnName.addEventListener('click', function () {
+  modal.classList.remove('hidden');
+  // overlay.classList.remove('hidden');
+});
+btnCloseModal.addEventListener('click', function () {
+  modal.classList.add('hidden');
+  //overlay.classList.add('hidden');
+});
+btnDone.addEventListener('click', function () {
+  player0Name.textContent = document.querySelector('.player-name-0').value;
+  player1Name.textContent = document.querySelector('.player-name-1').value;
 });
