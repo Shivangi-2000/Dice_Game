@@ -58,7 +58,7 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
     // if score is greater than 20 than player will win the game
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
 
       document.getElementById(`name--${activePlayer}`).textContent += ' 🥇';
