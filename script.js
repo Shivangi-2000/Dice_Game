@@ -108,4 +108,7 @@ btnCloseModal.addEventListener('click', function () {
 btnDone.addEventListener('click', function () {
   player0Name.textContent = document.querySelector('.player-name-0').value;
   player1Name.textContent = document.querySelector('.player-name-1').value;
+  document.querySelector('.player-name-0').value = '';
+  document.querySelector('.player-name-1').value = '';
+  modal.classList.add('hidden');
 });
